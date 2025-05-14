@@ -28,7 +28,7 @@ This project implements a full machine learning lifecycle for the Ames Housing d
 
 1.  Clone this repository:
     ```bash
-    git clone https://github.com/<USERNAME>/<REPO>.git
+    git clone https://github.com/abdulrahmanzahir/housing-price-lifecycle.git
     cd <REPO>
     ```
 2.  Create and activate a Python virtual environment:
