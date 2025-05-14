@@ -1,38 +1,127 @@
-# Ames Housing Price Prediction — MLOps Project
+## Ames Housing Price Prediction — MLOps Project
 
-This project implements a full machine learning lifecycle for the Ames Housing Price dataset, including data ingestion, preprocessing, model training, hyperparameter tuning, deployment, and monitoring — all orchestrated using MLflow.
-
----
-
-## Table of Contents
-- [Project Overview](#project-overview)
-- [Dataset](#dataset)
-- [Project Structure](#project-structure)
-- [Setup Instructions](#setup-instructions)
-- [Usage](#usage)
-  - [Data Ingestion](#data-ingestion)
-  - [Data Preprocessing](#data-preprocessing)
-  - [Model Training](#model-training)
-  - [Hyperparameter Tuning](#hyperparameter-tuning)
-  - [Model Serving](#model-serving)
-  - [Performance Monitoring](#performance-monitoring)
-- [Metrics Logged](#metrics-logged)
-- [Technologies & Tools](#technologies--tools)
-- [Future Work](#future-work)
-- [Contact](#contact)
-
----
-
-## Project Overview
-The goal is to build and deploy an accurate regression model to predict house prices using the Ames Housing dataset. This project emphasizes reproducibility, lifecycle management, and monitoring of ML models leveraging MLflow's powerful tracking, model registry, and serving functionalities.
-
----
-
-## Dataset
-The Ames Housing dataset contains detailed information on residential homes in Ames, Iowa. It includes 79 explanatory variables describing various aspects of residential properties, such as lot size, year built, number of bedrooms, and more.
-
-Source: [Kaggle - Ames Housing Dataset](https://www.kaggle.com/datasets/shashanknecrothapa/ames-housing-dataset)
+This project implements a full machine learning lifecycle for the Ames Housing dataset, including data ingestion, preprocessing, model training, hyperparameter tuning, deployment, and monitoring using MLflow.
 
 ---
 
 ## Project Structure
+
+```
+├── data/ # Raw and processed data CSV files
+├── notebooks/ # Jupyter notebooks (optional exploratory analysis)
+├── scripts/ # Helper scripts (e.g., make_payload.py)
+├── src/
+│ ├── ingestion.py # Data download & extraction
+│ ├── processing.py # Data preprocessing & encoding
+│ ├── train.py # Baseline model training and logging
+│ ├── tune.py # Hyperparameter tuning with MLflow + Hyperopt
+│ ├── monitor.py # Model performance monitoring script
+│ └── ... # Additional utility scripts
+├── README.md # Project overview & instructions
+├── requirements.txt # Python dependencies
+└── .gitignore # Git ignore rules
+```
+
+---
+
+## Setup Instructions
+
+1.  Clone this repository:
+    ```bash
+    git clone https://github.com/<USERNAME>/<REPO>.git
+    cd <REPO>
+    ```
+2.  Create and activate a Python virtual environment:
+    ```bash
+    python -m venv .venv
+    source .venv/bin/activate       # Linux/macOS
+    # .venv\Scripts\activate          # Windows PowerShell
+    ```
+3.  Install required packages:
+    ```bash
+    pip install -r requirements.txt
+    ```
+4.  Configure Kaggle API credentials to download the dataset:
+    Place `kaggle.json` in the directory: `%USERPROFILE%\.kaggle\` (Windows) or `~/.kaggle/` (Linux/macOS).
+    Make sure permissions allow read access.
+
+---
+
+## Usage
+
+### Data Ingestion
+
+Download and extract the dataset from Kaggle:
+```bash
+python src/ingestion.py
+```
+
+### Data Preprocessing
+
+Encode categorical variables and save the processed dataset:
+```bash
+python src/processing.py
+```
+
+### Model Training
+
+Train baseline models and log experiments to MLflow:
+```bash
+python src/train.py
+```
+
+### Hyperparameter Tuning
+
+Optimize Random Forest hyperparameters using Hyperopt and log the best model:
+```bash
+python src/tune.py
+```
+
+### Model Serving
+
+Serve the best registered model via MLflow model server:
+```bash
+mlflow models serve --model-uri "models:/Ames Housing Model/Production" --host 0.0.0.0 --port 1234
+```
+
+Send prediction requests via API (example with `curl`):
+```bash
+curl -X POST http://localhost:1234/invocations -H "Content-Type: application/json" --data-binary @payload.json
+```
+
+### Performance Monitoring
+
+Run the monitoring script to sample new data, predict, and log metrics:
+```bash
+python src/monitor.py
+```
+
+---
+
+## Metrics Logged
+
+-   RMSE (Root Mean Squared Error)
+-   MSE (Mean Squared Error)
+-   MAE (Mean Absolute Error)
+-   R² Score
+-   Max Error
+
+---
+
+## Technologies & Tools
+
+-   Python 3.10
+-   Scikit-learn
+-   MLflow (Tracking, Model Registry, Serving)
+-   Hyperopt (Hyperparameter Optimization)
+-   Pandas
+-   Kaggle API
+
+---
+
+## Future Work
+
+-   Develop a Streamlit or Flask app for interactive predictions
+-   Implement feature importance visualization and SHAP explanations
+-   Automate continuous monitoring with alerting mechanisms
+-   Deploy on cloud infrastructure (AWS/GCP/Azure)
