@@ -1,8 +1,8 @@
+## Ames Housing Price Prediction — MLOps Project
+
 ![Python](https://img.shields.io/badge/Python-3.10-blue)
 ![MLflow](https://img.shields.io/badge/MLflow-Tracking-green)
 ![License](https://img.shields.io/badge/license-MIT-brightgreen)
-
-## Ames Housing Price Prediction — MLOps Project
 
 This project implements a full machine learning lifecycle for the Ames Housing dataset, including data ingestion, preprocessing, model training, hyperparameter tuning, deployment, and monitoring using MLflow.
 
