@@ -24,6 +24,18 @@ This project implements a full machine learning lifecycle for the Ames Housing d
 
 ---
 
+## 🔧 Features
+- Data ingestion and cleaning
+- Feature engineering
+- Model training and tuning
+- Model monitoring
+- REST API testing with test payload
+
+## 📊 Dataset
+- Source: Ames Housing dataset
+- Target variable: `SalePrice`
+
+  
 ## Setup Instructions
 
 1.  Clone this repository:
@@ -119,9 +131,6 @@ python src/monitor.py
 
 ---
 
-## Future Work
-
--   Develop a Streamlit or Flask app for interactive predictions
--   Implement feature importance visualization and SHAP explanations
--   Automate continuous monitoring with alerting mechanisms
--   Deploy on cloud infrastructure (AWS/GCP/Azure)
+## 👤 Author
+Abdulrahman Zahir  
+[GitHub Profile](https://github.com/abdulrahmanzahir)
