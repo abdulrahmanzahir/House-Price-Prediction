@@ -1,0 +1,14 @@
+# Core packages
+pandas==2.2.2
+numpy==1.26.4
+scikit-learn==1.4.2
+
+# MLOps
+mlflow==2.11.3
+hyperopt==0.2.7
+
+# API & requests
+requests==2.31.0
+
+# Kaggle API
+kaggle==1.6.6
