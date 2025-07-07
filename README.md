@@ -138,4 +138,3 @@ python src/monitor.py
 ## 👤 Author
 Abdulrahman Zahir  
 [GitHub Profile](https://github.com/abdulrahmanzahir)
-![Pipeline Diagram](docs/pipeline.png)
